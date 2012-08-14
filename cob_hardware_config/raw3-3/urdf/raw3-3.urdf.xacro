@@ -9,8 +9,8 @@
   <include filename="$(find cob_description)/urdf/common.xacro" />
   <include filename="$(find cob_description)/urdf/materials.urdf.xacro" />
 
-  <include filename="$(find cob_hardware_config)/raw3-1/calibration/calibration.urdf.xacro" />   
-  
+  <include filename="$(find cob_hardware_config)/raw3-3/calibration/calibration.urdf.xacro" />   
+ 
   <!-- raw base -->
   <include filename="$(find raw_description)/urdf/base/base.urdf.xacro" />  
 
@@ -24,26 +24,24 @@
   <!-- frida --> 
   <include filename="$(find frida_description)/urdf/frida/frida.urdf.xacro" />   
 
-  <xacro:raw_base name="base"/>	<!--with new collision_model, but no platform_controller available yet-->
+  <xacro:raw_base name="base"/>	
 
-  
-
-  <!-- baer base-->
-  <!--include filename="$(find raw_description)/urdf/base/baer_base.urdf.xacro" /> 
-  <xacro:baer_base name="base"/-->
 
 
   <xacro:frida_torso parent="base_link">
-    <origin xyz="0 0 0.88" rpy="0 0 0" />
+    <!--origin xyz="0.1 0 0.35" rpy="0 0 0" /--> <!--on the platform -->
+    <origin xyz="0.1 0 0.55" rpy="0 0 0" />  <!--in the air - in order to be able observe every link-->
   </xacro:frida_torso>
 
-  <xacro:frida_arm name="arm" suffix ="left" reflect = "0">
-    <origin xyz="0 0 0" rpy="0 0 0" />
+  <xacro:frida_arm name="arm" suffix ="left">
+    <!--origin xyz=" -0.015 0.041 0.375" rpy="0 1.047197551 0.523598776" /-->
+    <!--origin xyz=" -0.015 0.041 0.375" rpy="-0.62934 0.950621 -0.1841" /-->  <!-- fxm-lc: the angles given by the frida Rosetta sheet -->
+    <origin xyz=" -0.022 0.043 0.375" rpy="0 1.047197551 0.42" /> <!--fxm-lc:  "customized" angles  -->
   </xacro:frida_arm>
 
-  <!--xacro:frida_arm name="arm" suffix= "right" reflect = "1">
-    <origin xyz="0 -0.15 0" rpy="0 0 ${-M_PI/4}" />
-  </xacro:frida_arm-->
+  <xacro:frida_arm name="arm" suffix= "right">
+    <origin xyz=" -0.022 -0.043 0.375" rpy="0 1.047197551 -0.42" />
+  </xacro:frida_arm>
 
 
 </robot>
